@@ -15,9 +15,14 @@ const Characters: React.FC = () => {
         dispatch(fetchCharacters({ page: page, search: search }));
     }, [dispatch, page, search]);
 
+    const handleSearch = (term: string) => {
+        setSearch(term);
+        setPage(1);
+    };
+
     return (
         <>
-            <Search callback={setSearch} />
+            <Search callback={handleSearch} />
             <CharactersList items={characters} />
             <Pagination page={page} callback={setPage} />
         </>
