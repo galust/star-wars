@@ -1,22 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit';
 import initialState from './initialState';
-import { CharactersState } from './types';
-import { fetchCharacters } from './operations';
+import { fetchCharacters, fetchCharacterById } from './operations';
 
 export const charactersSlice = createSlice({
     name: 'characters',
     initialState,
-    reducers: {},
+    reducers: {
+        resetStore(state) {
+            state.selected = undefined;
+        },
+    },
     extraReducers: (builder) => {
-        builder.addCase(fetchCharacters.fulfilled, (state: CharactersState, action) => {
+        builder.addCase(fetchCharacters.fulfilled, (state, action) => {
             state.count = action.payload.count;
             state.data = action.payload.results;
             state.isLoading = false;
         });
-        builder.addCase(fetchCharacters.rejected, (state: CharactersState, action) => {
+        builder.addCase(fetchCharacters.rejected, (state) => {
             state.isLoading = false;
         });
-        builder.addCase(fetchCharacters.pending, (state: CharactersState, action) => {
+        builder.addCase(fetchCharacters.pending, (state) => {
+            state.isLoading = true;
+        });
+        builder.addCase(fetchCharacterById.fulfilled, (state, action) => {
+            state.selected = action.payload;
+            state.isLoading = false;
+        });
+        builder.addCase(fetchCharacterById.rejected, (state) => {
+            state.isLoading = false;
+        });
+        builder.addCase(fetchCharacterById.pending, (state) => {
             state.isLoading = true;
         });
     },

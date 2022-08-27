@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Characters from './pages/Characters';
+import Loader from './components/Loader/Loader';
+
+const Characters = lazy(() => import('./pages/Characters/Characters'));
+const InnerPage = lazy(() => import('./pages/InnerPage/InnerPage'));
+const ErrorPage = lazy(() => import('./components/ErrorPage'));
 
 const Router: React.FC = () => {
     return (
-        <Routes>
-            <Route path="/" element={<Characters />} />
-        </Routes>
+        <Suspense fallback={<Loader />}>
+            <Routes>
+                <Route path="/" element={<Characters />} />
+                <Route path="/character/:id" element={<InnerPage />} />
+                <Route path="*" element={<ErrorPage />} />
+            </Routes>
+        </Suspense>
     );
 };
 

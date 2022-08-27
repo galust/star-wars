@@ -3,8 +3,13 @@ export interface Characters {
     url: string;
 }
 
+export interface CharacterDetails {
+    [prop: string]: string;
+}
+
 export interface CharactersState {
     data: Characters[];
-    count?: number;
+    count: number;
     isLoading: boolean;
+    selected?: CharacterDetails;
 }
