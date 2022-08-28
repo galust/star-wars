@@ -1,7 +1,7 @@
 import { CharactersState } from './types';
 
 const initialState: CharactersState = {
-    data: [],
+    data: undefined,
     isLoading: false,
     count: 0,
 };

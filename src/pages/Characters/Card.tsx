@@ -27,8 +27,8 @@ const Card: React.FC<CardItemsProps> = ({ item }) => {
                     <div className="card-avatar">
                         <img
                             src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
-                            alt="character image"
-                            title="character image"
+                            alt={item.name}
+                            title={item.name}
                         />
                     </div>
                     <Typography className="card-title" mb={0} gutterBottom>

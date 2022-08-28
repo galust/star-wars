@@ -11,22 +11,18 @@ import CardSkeleton from './CardSkeleton';
 
 import './Characters.scss';
 
-interface CardsListProps {
-    items: { name: string; url: string }[];
-}
-
-const CharactersList = ({ items }: CardsListProps) => {
+const CharactersList = () => {
     const isLoading = useAppSelector(charactersSel.selectLoading);
-
+    const characters = useAppSelector(charactersSel.selectCharacters);
     return (
         <Box className="characters-list" minHeight="300" my={[3, 4, 4, 8]}>
-            {isLoading ? (
+            {isLoading || !characters ? (
                 <CardSkeleton />
-            ) : !items.length ? (
+            ) : !characters.length ? (
                 <div className="characters-not-found">No Characters Found...</div>
             ) : (
                 <Grid container spacing={2}>
-                    {items.map((item) => {
+                    {characters.map((item) => {
                         return (
                             <Grid item key={item.name} xs={12} sm={6} md={3} lg={2.4}>
                                 <Card item={item} />

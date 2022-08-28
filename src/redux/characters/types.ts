@@ -8,7 +8,7 @@ export interface CharacterDetails {
 }
 
 export interface CharactersState {
-    data: Characters[];
+    data?: Characters[];
     count: number;
     isLoading: boolean;
     selected?: CharacterDetails;

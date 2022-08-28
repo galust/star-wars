@@ -22,7 +22,7 @@ const PersonalInfo: React.FC = () => {
     return (
         <Box className="personal-info" my={2}>
             <Box className="card-info-image">
-                <img src={character.image} alt="character image" title="character image" />
+                <img src={character.image} alt={character.name} title={character.name} />
             </Box>
 
             <Box className="card-info" sx={{ borderRadius: '12px' }} p={2} width="100%">
