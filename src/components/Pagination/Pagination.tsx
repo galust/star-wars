@@ -1,9 +1,11 @@
 import React from 'react';
 
+import Box from '@mui/material/Box';
 import MUIPagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+
 import { useAppSelector } from '../../redux/hooks';
 import { charactersSel } from '../../redux/characters';
+
 import { CHARACTERS_LIST_PAGE_COUNT } from '../../constants/constants';
 
 interface PaginationProps {
@@ -13,23 +15,21 @@ interface PaginationProps {
 
 const Pagination: React.FC<PaginationProps> = ({ page = 1, callback }) => {
     const pageCount = useAppSelector(charactersSel.selectCount);
-    const isLoading = useAppSelector(charactersSel.selectLoading);
 
-    if (isLoading || !pageCount) return null;
+    if (!pageCount) return null;
 
     const handleChange = (event: React.ChangeEvent<unknown>, page: number) => {
         callback(page);
     };
 
     return (
-        <Stack spacing={2}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
             <MUIPagination
-                color="primary"
                 page={page}
                 onChange={handleChange}
                 count={Math.ceil(pageCount / CHARACTERS_LIST_PAGE_COUNT)}
             />
-        </Stack>
+        </Box>
     );
 };
 

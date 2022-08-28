@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+import Container from '@mui/material/Container';
+
 import { useAppDispatch } from '../../redux/hooks';
 import { fetchCharacterById } from '../../redux/characters/operations';
 import charactersSlice from '../../redux/characters';
-
-import Box from '@mui/material/Box';
-import StarShips from '../../components/StarShips';
 import starshipsSlice from '../../redux/starships';
-import Vehicles from '../../components/Vehicles';
-import PersonalInfo from '../../components/PersonalInfo';
+
 import BackButton from '../../components/BackButton';
+import PersonalInfo from '../../components/PersonalInfo';
+import StarShips from '../../components/StarShips';
+import Vehicles from '../../components/Vehicles';
 
 const InnerPage: React.FC = () => {
     const params = useParams();
@@ -25,14 +27,12 @@ const InnerPage: React.FC = () => {
     }, [id]);
 
     return (
-        <div>
-            <Box sx={{ flexGrow: 1 }}>
-                <BackButton />
-                <PersonalInfo />
-                <StarShips />
-                <Vehicles />
-            </Box>
-        </div>
+        <Container maxWidth="lg">
+            <BackButton />
+            <PersonalInfo />
+            <StarShips />
+            <Vehicles />
+        </Container>
     );
 };
 

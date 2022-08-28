@@ -1,51 +1,63 @@
 import React from 'react';
+
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { useAppSelector } from '../../redux/hooks';
-import { starshipsSel } from '../../redux/starships';
 import Table from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
-import { StarshipFields } from '../../pages/InnerPage/fields';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
-import Skeleton from './Skeleton';
+import { useAppSelector } from '../../redux/hooks';
+import { starshipsSel } from '../../redux/starships';
+
+import { StarshipFields } from '../../pages/InnerPage/fields';
+
+import InnerPageSkeleton from '../../pages/InnerPage/InnerPageSkeleton';
+
+import './../../pages/InnerPage/InnerPage.scss';
 
 const StarShips: React.FC = () => {
     const starships = useAppSelector(starshipsSel.selectStarShips);
     const isLoading = useAppSelector(starshipsSel.selectLoading);
 
     if (isLoading) {
-        return <Skeleton />;
+        return (
+            <Box my={2}>
+                <InnerPageSkeleton />
+            </Box>
+        );
     } else if (!starships || !starships.length) {
         return null;
     }
 
     return (
-        <div>
-            <Typography variant="h5">Starships</Typography>
-            <div>
-                <TableContainer>
-                    <Table sx={{ maxWidth: 650 }}>
-                        <TableBody>
-                            {StarshipFields.map((field) => {
-                                return (
-                                    <TableRow key={field}>
-                                        <TableCell>{field}</TableCell>
-                                        {starships.map((starship) => {
-                                            return (
-                                                <TableCell key={starship.name}>
-                                                    {starship[field]}
-                                                </TableCell>
-                                            );
-                                        })}
-                                    </TableRow>
-                                );
-                            })}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>
-        </div>
+        <Box className="card-info" sx={{ borderRadius: '12px' }} p={2} my={2}>
+            <Typography className="card-info-title">Starships</Typography>
+            <TableContainer>
+                <Table className="card-info-list">
+                    <TableBody>
+                        {StarshipFields.map((field) => {
+                            return (
+                                <TableRow key={field}>
+                                    <TableCell>
+                                        <Box component="span" className="text-capitalize">
+                                            {field.replaceAll('_', ' ')}
+                                        </Box>
+                                    </TableCell>
+                                    {starships.map((starship) => {
+                                        return (
+                                            <TableCell key={starship.name}>
+                                                <Box key={starship.name}>{starship[field]}</Box>
+                                            </TableCell>
+                                        );
+                                    })}
+                                </TableRow>
+                            );
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </Box>
     );
 };
 

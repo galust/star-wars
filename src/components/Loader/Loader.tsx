@@ -1,8 +1,13 @@
 import React from 'react';
-import './loader.css';
+
+import './Loader.scss';
 
 const Loader: React.FC = () => {
-    return <div className="loader"></div>;
+    return (
+        <div className="loader-layer flex-center">
+            <div className="loader" />
+        </div>
+    );
 };
 
 export default Loader;

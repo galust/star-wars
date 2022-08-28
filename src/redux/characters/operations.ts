@@ -16,6 +16,7 @@ const fetchCharacters = createAsyncThunk('fetchCharacters', async (params: Chara
         params: {
             page,
             search,
+            count: 12,
         },
     });
 

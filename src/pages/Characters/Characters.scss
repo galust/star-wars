@@ -1,0 +1,44 @@
+.search {
+  > div{
+    width: 100%;
+
+    @media screen and (min-width: 600px) {
+      width: 500px;
+    }
+  }
+}
+
+.card {
+  box-shadow: 0 5px 5px -5px #333;
+  border-radius: 12px;
+
+  &:hover{
+    background-color: #E4EBF1;
+  }
+
+  .card-avatar{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 12px;
+
+    > img{
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .card-title {
+    font-weight: bold;
+    color: rgb(58, 70, 118);
+  }
+}
+
+.characters-not-found {
+  font-weight: bold;
+  font-style: italic;
+  color: rgb(58, 70, 118);
+}
+
+

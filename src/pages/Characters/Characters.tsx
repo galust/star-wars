@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
+
+import Container from '@mui/material/Container';
+
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { fetchCharacters } from '../../redux/characters/operations';
 import { charactersSel } from '../../redux/characters';
+
+import Search from '../../components/Search/Search';
 import CharactersList from './CharactersList';
 import Pagination from '../../components/Pagination';
-import Search from '../../components/Search/Search';
 
 const Characters: React.FC = () => {
     const characters = useAppSelector(charactersSel.selectCharacters);
@@ -21,11 +25,11 @@ const Characters: React.FC = () => {
     };
 
     return (
-        <>
+        <Container maxWidth="lg">
             <Search callback={handleSearch} />
             <CharactersList items={characters} />
             <Pagination page={page} callback={setPage} />
-        </>
+        </Container>
     );
 };
 

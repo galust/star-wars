@@ -17,7 +17,7 @@ const StarshipFields: string[] = [
     'max_atmosphering_speed',
     'model',
     'cost_in_credits',
-    'starship_class',
+    'starship class',
 ];
 
 const VehicleFields: string[] = [

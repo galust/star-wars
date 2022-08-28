@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import SearchIcon from '@mui/icons-material/Search';
+import { TextField } from '@mui/material';
+
+import './../../pages/InnerPage/InnerPage.scss';
 
 interface SearchProps {
     callback?: (str: string) => void;
@@ -22,14 +23,18 @@ const Search: React.FC<SearchProps> = ({ callback }) => {
     return (
         <Box
             component="form"
-            sx={{
-                '& .MuiTextField-root': { m: 1, width: '25ch' },
-            }}
             noValidate
             autoComplete="off"
+            className="search"
+            sx={{ display: 'flex', justifyContent: 'center' }}
         >
-            <TextField id="search-field" onChange={handleChange} />
-            <SearchIcon />
+            <TextField
+                id="standard-basic"
+                label="Search"
+                variant="standard"
+                color="secondary"
+                onChange={handleChange}
+            />
         </Box>
     );
 };

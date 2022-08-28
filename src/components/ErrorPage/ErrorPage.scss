@@ -1,0 +1,39 @@
+.error-page {
+  min-height: calc(100vh - 64px);
+  flex-direction: column;
+
+  @media screen and (min-width: 600px) {
+    min-height: calc(100vh - 104px);
+  }
+
+  .error-page-title {
+    font-size: 90px;
+    font-weight: bolder;
+    color: rgb(25, 38, 97);
+  }
+
+  .error-page-text {
+    font-size: 28px;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(120, 130, 170);
+  }
+
+  .error-button {
+    height: 40px;
+    border: 2px solid rgb(58, 70, 118);
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 20px;
+    border-radius: 12px;
+    transition: all 200ms ease-out;
+    background-color: #ffffff;
+    color: rgb(58, 70, 118);
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(58, 70, 118);
+      color: #ffffff;
+    }
+  }
+}

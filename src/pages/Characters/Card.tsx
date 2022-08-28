@@ -1,10 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import MUICard from '@mui/material/Card';
+import { CardActionArea } from '@mui/material';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+
 import { getIdFromUrl } from '../../utils/helper';
-import { useNavigate } from 'react-router-dom';
-import { CardActionArea } from '@mui/material';
+
+import './Characters.scss';
 
 interface CardItemsProps {
     item: { name: string; url: string };
@@ -17,18 +21,17 @@ const Card: React.FC<CardItemsProps> = ({ item }) => {
         navigate(`/character/${id}`, { replace: false });
     };
     return (
-        <MUICard variant="outlined" sx={{ maxWidth: 345 }} onClick={handleClick}>
+        <MUICard className="card" sx={{ borderRadius: '12px' }} onClick={handleClick}>
             <CardActionArea>
-                <CardContent>
-                    <div className="no-image">
+                <CardContent className="flex-center" sx={{ flexDirection: 'column' }}>
+                    <div className="card-avatar">
                         <img
                             src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
                             alt="character image"
                             title="character image"
-                            width="20%"
                         />
                     </div>
-                    <Typography gutterBottom variant="h5" component="div">
+                    <Typography className="card-title" mb={0} gutterBottom>
                         {item.name}
                     </Typography>
                 </CardContent>
